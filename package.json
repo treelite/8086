@@ -1,0 +1,18 @@
+{
+  "name": "8086",
+  "version": "0.1.0",
+  "description": "8086 emulator",
+  "main": "main.js",
+  "scripts": {
+    "compile": "babel ./ -d output --ignore node_modules,output"
+  },
+  "author": "treelite <c.xinle@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "charm": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.6.4",
+    "babel-preset-es2015-node5": "^1.1.2"
+  }
+}
