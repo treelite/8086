@@ -20,8 +20,8 @@ describe('push', () => {
         // PUSH ES
         memory.writeUInt8(0x06, 0);
         cpu.next();
-        expect(memory[0xFF]).toEqual(0xFF);
-        expect(memory[0xFE]).toEqual(0x10);
+        expect(memory[0xFF]).toEqual(0x10);
+        expect(memory[0xFE]).toEqual(0xFF);
     });
 
     it('general registers', () => {
@@ -29,8 +29,8 @@ describe('push', () => {
         // PUSH AX
         memory.writeUInt8(0x50, 0);
         cpu.next();
-        expect(memory[0xFF]).toEqual(0xFE);
-        expect(memory[0xFE]).toEqual(0x10);
+        expect(memory[0xFF]).toEqual(0x10);
+        expect(memory[0xFE]).toEqual(0xFE);
     });
 
     it('memory', () => {
@@ -41,8 +41,8 @@ describe('push', () => {
         memory.writeUInt8(0x10, 2);
         memory.writeUInt16LE(0xFE11, 0x10);
         cpu.next();
-        expect(memory[0xFF]).toEqual(0x11);
-        expect(memory[0xFE]).toEqual(0xFE);
+        expect(memory[0xFF]).toEqual(0xFE);
+        expect(memory[0xFE]).toEqual(0x11);
     });
 
 });
