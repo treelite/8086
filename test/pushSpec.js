@@ -20,6 +20,7 @@ describe('push', () => {
         // PUSH ES
         memory.writeUInt8(0x06, 0);
         cpu.next();
+        expect(cpu.ip).toEqual(1);
         expect(memory[0xFF]).toEqual(0x10);
         expect(memory[0xFE]).toEqual(0xFF);
     });
@@ -29,6 +30,7 @@ describe('push', () => {
         // PUSH DS
         memory.writeUInt8(0x1E, 0);
         cpu.next();
+        expect(cpu.ip).toEqual(1);
         expect(memory[0xFF]).toEqual(0x10);
         expect(memory[0xFE]).toEqual(0xFF);
     });
@@ -38,18 +40,22 @@ describe('push', () => {
         // PUSH AX
         memory.writeUInt8(0x50, 0);
         cpu.next();
+        expect(cpu.ip).toEqual(1);
         expect(memory[0xFF]).toEqual(0x10);
         expect(memory[0xFE]).toEqual(0xFE);
     });
 
     it('memory', () => {
+        memory.writeUInt16LE(0xFE11, 0x10);
+
         // PUSH [DI+0x10]
         memory.writeUInt8(0xFF, 0);
         // 0111 0101
         memory.writeUInt8(0x75, 1);
         memory.writeUInt8(0x10, 2);
-        memory.writeUInt16LE(0xFE11, 0x10);
+
         cpu.next();
+        expect(cpu.ip).toEqual(3);
         expect(memory[0xFF]).toEqual(0xFE);
         expect(memory[0xFE]).toEqual(0x11);
     });

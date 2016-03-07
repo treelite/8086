@@ -21,6 +21,7 @@ describe('pop', () => {
         memory.writeUInt8(0x17, 0);
         cpu.sp = 0xFE;
         cpu.next();
+        expect(cpu.ip).toEqual(1);
         expect(cpu.ss).toEqual(0x10FF);
     });
 
@@ -30,6 +31,7 @@ describe('pop', () => {
         memory.writeUInt8(0x5D, 0);
         cpu.sp = 0xFE;
         cpu.next();
+        expect(cpu.ip).toEqual(1);
         expect(cpu.bp).toEqual(0x10FF);
     });
 
@@ -42,6 +44,7 @@ describe('pop', () => {
         memory.writeUInt8(0x10, 2);
         cpu.sp = 0xFE;
         cpu.next();
+        expect(cpu.ip).toEqual(3);
         expect(memory[0x10]).toEqual(0xFF);
         expect(memory[0x11]).toEqual(0x10);
     });
