@@ -24,6 +24,15 @@ describe('push', () => {
         expect(memory[0xFE]).toEqual(0xFF);
     });
 
+    it('segment(ds) registers', () => {
+        cpu.ds = 0x10FF;
+        // PUSH DS
+        memory.writeUInt8(0x1E, 0);
+        cpu.next();
+        expect(memory[0xFF]).toEqual(0x10);
+        expect(memory[0xFE]).toEqual(0xFF);
+    });
+
     it('general registers', () => {
         cpu.ax = 0x10FE;
         // PUSH AX
