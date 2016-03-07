@@ -4,7 +4,9 @@
   "description": "8086 emulator",
   "main": "main.js",
   "scripts": {
-    "compile": "babel ./ -d output --ignore node_modules,output"
+    "compile": "babel ./ -d output --ignore node_modules,output",
+    "pretest": "npm run compile",
+    "test": "jasmine JASMINE_CONFIG_PATH=test/jasmine.json"
   },
   "author": "treelite <c.xinle@gmail.com>",
   "license": "MIT",
@@ -13,6 +15,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.6.4",
-    "babel-preset-es2015-node5": "^1.1.2"
+    "babel-preset-es2015-node5": "^1.1.2",
+    "jasmine": "^2.4.1"
   }
 }
