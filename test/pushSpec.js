@@ -60,4 +60,16 @@ describe('push', () => {
         expect(memory[0xFE]).toEqual(0x11);
     });
 
+    it('register', () => {
+        cpu.bx = 0x1011;
+        memory.writeUInt8(0xFF, 0);
+        // 11 110 011
+        memory.writeUInt8(0xF3, 1);
+
+        cpu.next();
+        expect(cpu.ip).toEqual(2);
+        expect(memory[0xFF]).toEqual(0x10);
+        expect(memory[0xFE]).toEqual(0x11);
+    });
+
 });
