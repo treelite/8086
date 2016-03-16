@@ -4,6 +4,7 @@
  */
 
 import CPU from '../lib/CPU';
+import {FLAG_MASK} from '../lib/const';
 
 describe('add', () => {
 
@@ -100,6 +101,114 @@ describe('add', () => {
         cpu.next();
         expect(cpu.ip).toEqual(5);
         expect(cpu.read(0x10, true)).toEqual(0x1210);
+    });
+
+    it('CF === 1', () => {
+        cpu.ax = 0xFFFF;
+        memory.writeUInt8(0x05, 0);
+        memory.writeUInt16LE(0x01, 1);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.CF).not.toEqual(0);
+    });
+
+    it('CF === 0', () => {
+        cpu.al = 0x0F;
+        memory.writeUInt8(0x04, 0);
+        memory.writeUInt8(0x01, 1);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.CF).toEqual(0);
+    });
+
+    it('AF === 1', () => {
+        cpu.al = 0x0F;
+        memory.writeUInt8(0x04, 0);
+        memory.writeUInt8(0x01, 1);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.AF).not.toEqual(0);
+    });
+
+    it('AF === 0', () => {
+        cpu.ax = 0xFF01;
+        memory.writeUInt8(0x05, 0);
+        memory.writeUInt16LE(0x01, 1);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.AF).toEqual(0);
+    });
+
+    it('OF === 1', () => {
+        cpu.al = 0x7F;
+        memory.writeUInt8(0x04, 0);
+        memory.writeUInt8(0x01, 1);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.OF).not.toEqual(0);
+    });
+
+    it('OF === 0', () => {
+        cpu.ax = 0x7F;
+        memory.writeUInt8(0x05, 0);
+        memory.writeUInt16LE(0x01, 1);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.OF).toEqual(0);
+    });
+
+    it('ZF === 1', () => {
+        cpu.al = 0xFF;
+        memory.writeUInt8(0x04, 0);
+        memory.writeUInt8(0x01, 1);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.ZF).not.toEqual(0);
+    });
+
+    it('ZF === 0', () => {
+        cpu.ax = 0x7F;
+        memory.writeUInt8(0x05, 0);
+        memory.writeUInt16LE(0x01, 1);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.ZF).toEqual(0);
+    });
+
+    it('SF === 1', () => {
+        cpu.al = 0xFE;
+        memory.writeUInt8(0x04, 0);
+        memory.writeUInt8(0x01, 1);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.SF).not.toEqual(0);
+    });
+
+    it('SF === 0', () => {
+        cpu.ax = 0x7E;
+        memory.writeUInt8(0x05, 0);
+        memory.writeUInt16LE(0x01, 1);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.SF).toEqual(0);
+    });
+
+    it('PF === 1', () => {
+        cpu.al = 0x07;
+        memory.writeUInt8(0x04, 0);
+        memory.writeUInt8(0x01, 1);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.PF).not.toEqual(0);
+    });
+
+    it('PF === 0', () => {
+        cpu.al = 0x08;
+        memory.writeUInt8(0x04, 0);
+        memory.writeUInt8(0x01, 1);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.PF).toEqual(0);
     });
 
 });
