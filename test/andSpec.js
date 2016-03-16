@@ -22,7 +22,6 @@ describe('and', () => {
         cpu.setPSW(FLAG_MASK.AF, 1);
 
         cpu.al = 0x82;
-        // Add al 0x12
         memory.writeUInt8(0x24, 0);
         memory.writeUInt8(0x90, 1);
 

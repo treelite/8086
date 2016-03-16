@@ -1,5 +1,5 @@
 /**
- * @file add spec
+ * @file OR spec
  * @author treelite(c.xinle@gmail.com)
  */
 
@@ -22,7 +22,6 @@ describe('or', () => {
         cpu.setPSW(FLAG_MASK.AF, 1);
 
         cpu.al = 0x82;
-        // Add al 0x12
         memory.writeUInt8(0x0C, 0);
         memory.writeUInt8(0x90, 1);
 
