@@ -50,4 +50,17 @@ describe('and', () => {
         expect(cpu.read(0x10)).toEqual(0xAB & 0x11);
     });
 
+    it('immediate to memory', () => {
+        memory.writeUInt16LE(0x11FF, 0x10);
+        memory.writeUInt8(0x83, 0);
+        // 00 100 110
+        memory.writeUInt8(0x26, 1);
+        memory.writeUInt16LE(0x10, 2);
+        memory.writeUInt8(0x11, 4);
+
+        cpu.next();
+        expect(cpu.ip).toEqual(5);
+        expect(cpu.read(0x10, true)).toEqual(0x11FF & 0x11);
+    });
+
 });
