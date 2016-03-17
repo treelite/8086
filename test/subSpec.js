@@ -27,13 +27,13 @@ describe('sub', () => {
     });
 
     it('immediate from accumulator (word)', () => {
-        cpu.ax = 0xFF;
+        cpu.ax = 0x00;
         memory.writeUInt8(0x2D, 0);
         memory.writeUInt16LE(0x01, 1);
 
         cpu.next();
         expect(cpu.ip).toEqual(3);
-        expect(cpu.ax).toEqual(0xFE);
+        expect(cpu.ax).toEqual(0xFFFF);
     });
 
     it('reg from register', () => {
