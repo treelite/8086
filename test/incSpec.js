@@ -49,4 +49,84 @@ describe('inc', () => {
         expect(cpu.dx).toEqual(0x1200);
     });
 
+    it('AF === 1', () => {
+        cpu.dx = 0x11FF;
+        memory.writeUInt8(0x42, 0);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.AF).not.toEqual(0);
+    });
+
+    it('AF === 0', () => {
+        cpu.dx = 0x11FE;
+        memory.writeUInt8(0x42, 0);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.AF).toEqual(0);
+    });
+
+    it('OF === 1', () => {
+        cpu.dx = 0x7FFF;
+        memory.writeUInt8(0x42, 0);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.OF).not.toEqual(0);
+    });
+
+    it('OF === 0', () => {
+        cpu.dx = 0x8FFF;
+        memory.writeUInt8(0x42, 0);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.OF).toEqual(0);
+    });
+
+    it('PF === 1', () => {
+        cpu.dx = 0x01;
+        memory.writeUInt8(0x42, 0);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.PF).not.toEqual(0);
+    });
+
+    it('PF === 2', () => {
+        cpu.dx = 0x04;
+        memory.writeUInt8(0x42, 0);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.PF).toEqual(0);
+    });
+
+    it('SF === 1', () => {
+        cpu.dx = 0x8104;
+        memory.writeUInt8(0x42, 0);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.SF).not.toEqual(0);
+    });
+
+    it('SF === 1', () => {
+        cpu.dx = 0x7104;
+        memory.writeUInt8(0x42, 0);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.SF).toEqual(0);
+    });
+
+    it('ZF === 1', () => {
+        cpu.dx = 0xFFFF;
+        memory.writeUInt8(0x42, 0);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.ZF).not.toEqual(0);
+    });
+
+    it('ZF === 0', () => {
+        cpu.dx = 0x01;
+        memory.writeUInt8(0x42, 0);
+
+        cpu.next();
+        expect(cpu.psw & FLAG_MASK.ZF).toEqual(0);
+    });
+
 });
