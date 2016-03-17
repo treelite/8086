@@ -89,7 +89,7 @@ describe('inc', () => {
         expect(cpu.psw & FLAG_MASK.PF).not.toEqual(0);
     });
 
-    it('PF === 2', () => {
+    it('PF === 0', () => {
         cpu.dx = 0x04;
         memory.writeUInt8(0x42, 0);
 
@@ -105,7 +105,7 @@ describe('inc', () => {
         expect(cpu.psw & FLAG_MASK.SF).not.toEqual(0);
     });
 
-    it('SF === 1', () => {
+    it('SF === 0', () => {
         cpu.dx = 0x7104;
         memory.writeUInt8(0x42, 0);
 
