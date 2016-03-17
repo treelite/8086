@@ -21,7 +21,7 @@ describe('jmp', () => {
         memory.writeUInt16LE(0x11AB, 2);
 
         cpu.next();
-        expect(cpu.ip).toEqual(0x11AC);
+        expect(cpu.ip).toEqual(0x11AF);
     });
 
     it('direct within segment-short', () => {
@@ -30,7 +30,7 @@ describe('jmp', () => {
         memory.writeUInt8(0x11, 3);
 
         cpu.next();
-        expect(cpu.ip).toEqual(0x13);
+        expect(cpu.ip).toEqual(0x15);
     });
 
     it('indirect within segment by memory', () => {
