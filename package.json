@@ -1,12 +1,14 @@
 {
   "name": "8086",
   "version": "0.1.0",
-  "description": "8086 emulator",
+  "description": "simple emulator for 8086",
   "main": "main.js",
   "scripts": {
     "compile": "babel ./ -d output --ignore node_modules,output",
     "pretest": "npm run compile",
-    "test": "jasmine JASMINE_CONFIG_PATH=test/jasmine.json"
+    "test": "jasmine JASMINE_CONFIG_PATH=test/jasmine.json",
+    "prestart": "npm run compile",
+    "start": "node ./output/test/codegolf.js"
   },
   "author": "treelite <c.xinle@gmail.com>",
   "license": "MIT",
