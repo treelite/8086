@@ -82,7 +82,7 @@ describe('dec', () => {
     });
 
     it('PF === 1', () => {
-        cpu.dx = 0x03;
+        cpu.dx = 0x04;
         memory.writeUInt8(0x4A, 0);
 
         cpu.next();
@@ -90,7 +90,7 @@ describe('dec', () => {
     });
 
     it('PF === 0', () => {
-        cpu.dx = 0x04;
+        cpu.dx = 0x03;
         memory.writeUInt8(0x4A, 0);
 
         cpu.next();

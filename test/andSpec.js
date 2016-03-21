@@ -33,7 +33,7 @@ describe('and', () => {
         expect(cpu.psw & FLAG_MASK.AF).not.toEqual(0);
         expect(cpu.psw & FLAG_MASK.SF).not.toEqual(0);
         expect(cpu.psw & FLAG_MASK.ZF).toEqual(0);
-        expect(cpu.psw & FLAG_MASK.PF).not.toEqual(0);
+        expect(cpu.psw & FLAG_MASK.PF).toEqual(0);
     });
 
     it('register to memory', () => {

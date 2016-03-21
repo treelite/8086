@@ -82,7 +82,7 @@ describe('inc', () => {
     });
 
     it('PF === 1', () => {
-        cpu.dx = 0x01;
+        cpu.dx = 0x02;
         memory.writeUInt8(0x42, 0);
 
         cpu.next();
@@ -90,7 +90,7 @@ describe('inc', () => {
     });
 
     it('PF === 0', () => {
-        cpu.dx = 0x04;
+        cpu.dx = 0x03;
         memory.writeUInt8(0x42, 0);
 
         cpu.next();

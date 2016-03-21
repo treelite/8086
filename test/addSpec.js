@@ -157,18 +157,18 @@ describe('add', () => {
         expect(cpu.psw & FLAG_MASK.OF).toEqual(0);
     });
 
-    it('ZF === 1', () => {
-        cpu.al = 0xFF;
+    it('ZF === 0', () => {
+        cpu.al = 0xEF;
         memory.writeUInt8(0x04, 0);
         memory.writeUInt8(0x01, 1);
 
         cpu.next();
-        expect(cpu.psw & FLAG_MASK.ZF).not.toEqual(0);
+        expect(cpu.psw & FLAG_MASK.ZF).toEqual(0);
     });
 
     it('ZF === 0', () => {
-        cpu.ax = 0x7F;
-        memory.writeUInt8(0x05, 0);
+        cpu.al = 0xFF;
+        memory.writeUInt8(0x04, 0);
         memory.writeUInt16LE(0x01, 1);
 
         cpu.next();
@@ -194,7 +194,7 @@ describe('add', () => {
     });
 
     it('PF === 1', () => {
-        cpu.al = 0x07;
+        cpu.al = 0x02;
         memory.writeUInt8(0x04, 0);
         memory.writeUInt8(0x01, 1);
 
@@ -203,7 +203,7 @@ describe('add', () => {
     });
 
     it('PF === 0', () => {
-        cpu.al = 0x08;
+        cpu.al = 0x07;
         memory.writeUInt8(0x04, 0);
         memory.writeUInt8(0x01, 1);
 
