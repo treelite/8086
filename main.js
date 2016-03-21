@@ -22,7 +22,7 @@ class Emulator {
      * @constructor
      */
     constructor() {
-        let memory = this.memory = new Buffer(2 ^ 16 - 1);
+        let memory = this.memory = new Buffer(Math.pow(2, 16) - 1);
         let cpu = this.cpu = new CPU(memory);
         let video = this.video = new Video();
         cpu.on('writevideo', (address, data) => video.write(address, data));
@@ -38,6 +38,7 @@ class Emulator {
         if (typeof program === 'string') {
             program = fs.readFileSync(program);
         }
+        this.memory.fill(0);
         program.copy(this.memory);
         this.cpu.reset();
     }
@@ -46,9 +47,10 @@ class Emulator {
      * 运行
      *
      * @public
+     * @return {Object} 运行结果
      */
     run() {
-        this.cpu.run();
+        return this.cpu.run();
     }
 
     /**
