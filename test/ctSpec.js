@@ -154,7 +154,7 @@ describe('conditional transfers', () => {
 
         it('not jump', () => {
             cpu.setPSW(FLAG_MASK.ZF, 1);
-            cpu.setPSW(FLAG_MASK.CF, 1);
+            cpu.setPSW(FLAG_MASK.CF, 0);
             memory.writeUInt8(0x77, 0);
             memory.writeUInt8(0x11, 1);
 
