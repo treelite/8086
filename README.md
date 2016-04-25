@@ -6,7 +6,8 @@ Simple emulator for 8086, code challenage from [Emulate an Intel 8086 CPU](http:
 
 ## How to do
 
-[待码字...]
+* [准备工作](http://treelite.me/note/8086-emulator-1/)
+* _To Be Continued ..._
 
 ## Links
 
